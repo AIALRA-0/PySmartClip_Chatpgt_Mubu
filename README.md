@@ -1,0 +1,2 @@
+# PySmartClip_Chatpgt_Mubu
+用于处理从Chatgpt Web直接复制公式到幕布时的格式错乱问题
