@@ -100,7 +100,7 @@ def remove_duplicate_non_chinese(text):
     non_chinese_parts = [part.strip() for part in re.findall(r'[^\u4e00-\u9fa5]+', text)]
 
     # 处理每个非中文部分，去掉开头的符号（按需添加）
-    non_chinese_parts = [re.sub(r'^[\s:：,，.。;；*]+|[\s:：,，.。*;；]+$', '', part) for part in non_chinese_parts]
+    non_chinese_parts = [re.sub(r'^[\s:：,，.。;；（）()*]+|[\s:：,，.。;；（）()*]+$', '', part) for part in non_chinese_parts]
 
     # 处理符号后的空格
     non_chinese_parts = [part.strip() for part in non_chinese_parts]
