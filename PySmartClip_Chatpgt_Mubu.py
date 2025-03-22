@@ -12,6 +12,8 @@ def process_text(text):
     text = remove_duplicate_non_chinese(text)
     text = remove_star_wrapped_chinese(text)
     text = replace_eng_with_chn_char(text)
+    text = final_cleanup(text)
+
     return text
 
 def remove_chn_symbols(text):
@@ -29,7 +31,7 @@ def remove_newline_char(text):
     # 处理后的文本构建
     new_text = []
     last_pos = 0
-
+    
     for match in matches:
         start, end = match.span()  # 获取匹配的起止位置
         match_text = text[start:end]  # 取出匹配的文本
@@ -148,9 +150,50 @@ def remove_duplicate_non_chinese(text):
 
 def remove_star_wrapped_chinese(text):
     """
-    去掉文本中间是中文，两端是**的部分，例如 **目标**
+    去掉文本中间是中文，两端是**的部分，例如 **目标**，以及两端的空格
     """
-    return re.sub(r'\*\*([\u4e00-\u9fa5]+)\*\*', r'\1', text)
+    text = re.sub(r'\*\*([\u4e00-\u9fa5]+)\*\*', r'\1', text)
+    text = re.sub(r'\*\*([\u4e00-\u9fa5]+)', r'\1', text)
+    text = re.sub(r'([\u4e00-\u9fa5]+)\*\*', r'\1', text)
+    text = re.sub(r' ([\u4e00-\u9fa5]+) ', r'\1', text)
+    text = re.sub(r'([\u4e00-\u9fa5]+) ', r'\1', text)
+    text = re.sub(r' ([\u4e00-\u9fa5]+)', r'\1', text)
+    return text
+
+def final_cleanup(text):
+    result = []
+    inside_math = False
+    buffer = ""
+
+    i = 0
+    while i < len(text):
+        if text[i] == "$":
+            if inside_math:
+                buffer += "$"
+                result.append(buffer)  # 数学块内容原样保留
+                buffer = ""
+            else:
+                # 非数学块：清理 buffer
+                cleaned = buffer.replace("**", "")
+                cleaned = cleaned.replace(" ", "").replace("\u3000", "")
+                result.append(cleaned + "$")
+                buffer = ""
+            inside_math = not inside_math
+            i += 1
+        else:
+            buffer += text[i]
+            i += 1
+
+    # 处理最后一段（如果不在数学块中）
+    if buffer:
+        if inside_math:
+            result.append(buffer)  # 理论上不应该落单，但安全起见保留
+        else:
+            cleaned = buffer.replace("**", "")
+            cleaned = cleaned.replace(" ", "").replace("\u3000", "")
+            result.append(cleaned)
+
+    return "".join(result)
 
 def check_clipboard():
     try:
