@@ -4,13 +4,14 @@
 *个人自用，可能存在较多bug和不方便，等待自行或者后续优化
 
 ## Chatgpt公式案例:
-![image](https://github.com/user-attachments/assets/f3bf4900-6bc1-4b95-be0a-a910cec9c48c)
+![image](https://github.com/user-attachments/assets/f2181292-8a04-4357-9ccc-6532e1ead065)
 
-## Mubu直接粘贴案例:
-![image](https://github.com/user-attachments/assets/777224c1-35d2-4d4e-8dc9-91685e8fac5a)
+## 使用Web复制到剪贴板
+![image](https://github.com/user-attachments/assets/3b31e0fd-0139-44c3-9b90-f1ebf479a406)
 
-## 处理后文本案例:
-![image](https://github.com/user-attachments/assets/b39731d5-9ffb-4a25-b0e9-28ee37b70fd8)
-![image](https://github.com/user-attachments/assets/c262a546-6171-4fa6-8a4b-213c1c24d0b0)
+## 自动处理格式
+![image](https://github.com/user-attachments/assets/9ccd50cb-e44f-4a1e-860b-ee2cdbd52315)
+
+
 
 
