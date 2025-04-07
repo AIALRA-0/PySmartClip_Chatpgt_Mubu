@@ -6,7 +6,7 @@
 ## Chatgpt公式案例:
 ![image](https://github.com/user-attachments/assets/f2181292-8a04-4357-9ccc-6532e1ead065)
 
-## 使用Web复制到剪贴板
+## 使用Web复制自动监听
 ![image](https://github.com/user-attachments/assets/3b31e0fd-0139-44c3-9b90-f1ebf479a406)
 
 ## 自动处理格式
